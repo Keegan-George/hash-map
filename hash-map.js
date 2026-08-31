@@ -1,4 +1,4 @@
-import { LinkedList } from "../linked-list/linked-list.js";
+import { LinkedList } from "./linked-list.js";
 
 class HashMap {
   constructor() {
