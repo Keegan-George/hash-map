@@ -217,6 +217,16 @@ class LinkedList {
     }
     return current;
   }
+
+  getNodeByKey(key) {
+    let current = this.head;
+    while (current) {
+      if (current.key === key) {
+        return current;
+      }
+    }
+    return;
+  }
 }
 
 /**
