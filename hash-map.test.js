@@ -53,4 +53,22 @@ describe("Positive cases", () => {
       expect(map.remove("purple")).toBe(false);
     });
   });
+
+  describe("length() scenarios", () => {
+    test("Get total number of nodes", () => {
+      expect(map.length()).toBe(12);
+    });
+
+    test("Add node increases length", () => {
+      expect(map.length()).toBe(12);
+      map.set("flamingo", "pink");
+      expect(map.length()).toBe(13);
+    });
+
+    test("Remove node decreases length", () => {
+      expect(map.length()).toBe(12);
+      map.remove("apple", "red");
+      expect(map.length()).toBe(11);
+    });
+  });
 });
