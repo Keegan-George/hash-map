@@ -64,7 +64,7 @@ class LinkedList {
    * @readonly
    */
   get head() {
-    return this._head?.key;
+    return this._head;
   }
 
   /**
@@ -73,7 +73,7 @@ class LinkedList {
    * @readonly
    */
   get tail() {
-    return this._tail?.key;
+    return this._tail;
   }
 
   /**
@@ -224,6 +224,7 @@ class LinkedList {
       if (current.key === key) {
         return current;
       }
+      current = current.nextNode;
     }
     return;
   }
