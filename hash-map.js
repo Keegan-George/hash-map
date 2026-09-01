@@ -53,6 +53,16 @@ class HashMap {
 
     return null;
   }
+
+  has(key) {
+    const node = this.get(key);
+
+    if (node) {
+      return true;
+    }
+
+    return false;
+  }
 }
 
 export { HashMap };

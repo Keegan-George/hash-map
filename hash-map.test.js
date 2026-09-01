@@ -30,4 +30,17 @@ describe("Positive cases", () => {
       expect(map.get("Tony")).toBeNull();
     });
   });
+
+  describe("has() scenarios", () => {
+    test("Existant nodes return true", () => {
+      expect(map.has("Peter")).toBe(true);
+      expect(map.has("Bruce")).toBe(true);
+      expect(map.has("Clark")).toBe(true);
+      expect(map.has("Eric")).toBe(true);
+    });
+
+    test("Non-existant node return false", () => {
+      expect(map.has("Tony")).toBe(false);
+    });
+  });
 });
