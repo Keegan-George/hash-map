@@ -39,13 +39,20 @@ class HashMap {
       node.value = value;
     }
   }
+
+  get(key) {
+    const hashCode = this.#hash(key);
+    const index = hashCode % this._capacity;
+    const bucket = this._buckets[index]; //linked list or null
+
+    const node = bucket?.getNodeByKey(key); //node or null
+
+    if (node) {
+      return node.value;
+    }
+
+    return null;
+  }
 }
 
-// const map = new HashMap();
-// map.set("keegan", "george");
-// map.set("yondu", "mori");
-// map.set("bruce", "banner");
-// map.set("keegan", "zack");
-// map.set("rama", "swamy");
-// map.set("sita", "bita");
-// const stop = "stop";
+export { HashMap };
