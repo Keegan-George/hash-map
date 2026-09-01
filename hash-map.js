@@ -20,14 +20,32 @@ class HashMap {
 
   set(key, value) {
     const hashCode = this.#hash(key);
-    const bucket = hashCode % this._capacity;
+    const index = hashCode % this._capacity;
 
-    if (!this._buckets[bucket]) {
+    const bucket = this._buckets[index]; //linked list or null
+
+    if (!bucket) {
       const list = new LinkedList();
-      list.append(`${key}:${value}`);
-      this._buckets[bucket] = list;
+      list.append(key, value);
+      this._buckets[index] = list;
+      return;
+    }
+
+    const node = bucket.getNodeByKey(key);
+
+    if (!node) {
+      bucket.append(key, value);
     } else {
-      this._buckets[bucket].append(`${key}:${value}`);
+      node.value = value;
     }
   }
 }
+
+// const map = new HashMap();
+// map.set("keegan", "george");
+// map.set("yondu", "mori");
+// map.set("bruce", "banner");
+// map.set("keegan", "zack");
+// map.set("rama", "swamy");
+// map.set("sita", "bita");
+// const stop = "stop";
