@@ -228,6 +228,31 @@ class LinkedList {
     }
     return;
   }
+
+  removeNodeByKey(key) {
+    let current = this.head;
+
+    if (current.key === key) {
+      this.pop();
+      return;
+    }
+
+    while (current.nextNode) {
+      if (current.nextNode.key === key) {
+        let remove = current.nextNode;
+        let after = remove.nextNode;
+
+        current.nextNode = after;
+
+        if (!current.nextNode) {
+          this._tail = current;
+        }
+
+        return;
+      }
+      current = current.nextNode;
+    }
+  }
 }
 
 /**
