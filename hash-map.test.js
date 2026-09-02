@@ -82,21 +82,170 @@ describe("Positive cases", () => {
 
   describe("keys(), values(), entries()", () => {
     test("get all keys", () => {
-      expect(map.keys().sort()).toEqual;
-      [
-        "elephant",
-        "carrot",
-        "frog",
-        "banana",
-        "apple",
-        "grape",
-        "hat",
-        "dog",
-        "lion",
-        "ice cream",
-        "jacket",
-        "kite",
-      ].sort();
+      expect(map.keys().sort()).toEqual(
+        [
+          "elephant",
+          "carrot",
+          "frog",
+          "banana",
+          "apple",
+          "grape",
+          "hat",
+          "dog",
+          "lion",
+          "ice cream",
+          "jacket",
+          "kite",
+        ].sort(),
+      );
+    });
+
+    test("get all values", () => {
+      expect(map.values().sort()).toEqual(
+        [
+          "gray",
+          "orange",
+          "green",
+          "yellow",
+          "red",
+          "purple",
+          "black",
+          "brown",
+          "golden",
+          "white",
+          "blue",
+          "pink",
+        ].sort(),
+      );
+    });
+
+    test("get all key:value pairs", () => {
+      expect(map.entries().sort()).toEqual(
+        [
+          ["elephant", "gray"],
+          ["carrot", "orange"],
+          ["frog", "green"],
+          ["banana", "yellow"],
+          ["apple", "red"],
+          ["grape", "purple"],
+          ["hat", "black"],
+          ["dog", "brown"],
+          ["lion", "golden"],
+          ["ice cream", "white"],
+          ["jacket", "blue"],
+          ["kite", "pink"],
+        ].sort(),
+      );
+    });
+
+    test("Add node updates keys, values, and entries", () => {
+      map.set("zebra", "striped");
+
+      expect(map.keys().sort()).toEqual(
+        [
+          "elephant",
+          "carrot",
+          "frog",
+          "banana",
+          "apple",
+          "grape",
+          "hat",
+          "dog",
+          "lion",
+          "ice cream",
+          "jacket",
+          "kite",
+          "zebra",
+        ].sort(),
+      );
+
+      expect(map.values().sort()).toEqual(
+        [
+          "gray",
+          "orange",
+          "green",
+          "yellow",
+          "red",
+          "purple",
+          "black",
+          "brown",
+          "golden",
+          "white",
+          "blue",
+          "pink",
+          "striped",
+        ].sort(),
+      );
+
+      expect(map.entries().sort()).toEqual(
+        [
+          ["elephant", "gray"],
+          ["carrot", "orange"],
+          ["frog", "green"],
+          ["banana", "yellow"],
+          ["apple", "red"],
+          ["grape", "purple"],
+          ["hat", "black"],
+          ["dog", "brown"],
+          ["lion", "golden"],
+          ["ice cream", "white"],
+          ["jacket", "blue"],
+          ["kite", "pink"],
+          ["zebra", "striped"],
+        ].sort(),
+      );
+    });
+
+    test("Remove node updates keys, values, and entries", () => {
+      map.remove("apple");
+
+      expect(map.keys().sort()).toEqual(
+        [
+          "elephant",
+          "carrot",
+          "frog",
+          "banana",
+          "grape",
+          "hat",
+          "dog",
+          "lion",
+          "ice cream",
+          "jacket",
+          "kite",
+        ].sort(),
+      );
+
+      expect(map.values().sort()).toEqual(
+        [
+          "gray",
+          "orange",
+          "green",
+          "yellow",
+          "purple",
+          "black",
+          "brown",
+          "golden",
+          "white",
+          "blue",
+          "pink",
+        ].sort(),
+      );
+
+      expect(map.entries().sort()).toEqual(
+        [
+          ["elephant", "gray"],
+          ["carrot", "orange"],
+          ["frog", "green"],
+          ["banana", "yellow"],
+          ["grape", "purple"],
+          ["hat", "black"],
+          ["dog", "brown"],
+          ["lion", "golden"],
+          ["ice cream", "white"],
+          ["jacket", "blue"],
+          ["kite", "pink"],
+        ].sort(),
+      );
     });
   });
 });

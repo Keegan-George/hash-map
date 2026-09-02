@@ -97,11 +97,21 @@ class HashMap {
   }
 
   keys() {
-    const keys = this._buckets.reduce((acc, item) => {
+    return this._buckets.reduce((acc, item) => {
       return acc.concat(...item.getKeys());
     }, []);
+  }
 
-    return keys;
+  values() {
+    return this._buckets.reduce((acc, item) => {
+      return acc.concat(...item.getValues());
+    }, []);
+  }
+
+  entries() {
+    return this._buckets.reduce((acc, item) => {
+      return acc.concat(item.getEntries());
+    }, []);
   }
 }
 
