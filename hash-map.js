@@ -78,6 +78,13 @@ class HashMap {
     bucket.removeNodeByKey(key);
     return true;
   }
+
+  length() {
+    return this._buckets.reduce((acc, item) => {
+      acc += item.size;
+      return acc;
+    }, 0);
+  }
 }
 
 export { HashMap };
