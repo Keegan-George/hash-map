@@ -253,6 +253,42 @@ class LinkedList {
       current = current.nextNode;
     }
   }
+
+  getKeys() {
+    const keys = [];
+    let current = this.head;
+
+    while (current) {
+      keys.push(current.key);
+      current = current.nextNode;
+    }
+
+    return keys;
+  }
+
+  getValues() {
+    const values = [];
+    let current = this.head;
+
+    while (current) {
+      values.push(current.value);
+      current = current.nextNode;
+    }
+
+    return values;
+  }
+
+  getEntries() {
+    const entries = [];
+    let current = this.head;
+
+    while (current) {
+      entries.push([current.key, current.value]);
+      current = current.nextNode;
+    }
+
+    return entries;
+  }
 }
 
 /**
