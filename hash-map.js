@@ -1,10 +1,14 @@
 import { LinkedList } from "./linked-list.js";
 
+const LOAD_FACTOR = 0.75;
+const CAPACITY = 16;
+
 class HashMap {
   constructor() {
-    this._loadFactor = 0.75;
-    this._capacity = 16;
+    this._loadFactor;
+    this._capacity;
     this._buckets = [];
+    this.clear();
   }
 
   #hash(key) {
@@ -84,6 +88,12 @@ class HashMap {
       acc += item.size;
       return acc;
     }, 0);
+  }
+
+  clear() {
+    this._loadFactor = LOAD_FACTOR;
+    this._capacity = CAPACITY;
+    this._buckets.length = 0; //empty array contents
   }
 }
 

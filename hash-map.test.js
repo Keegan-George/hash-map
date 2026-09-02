@@ -70,5 +70,13 @@ describe("Positive cases", () => {
       map.remove("apple", "red");
       expect(map.length()).toBe(11);
     });
+
+    describe("clear() scenarios", () => {
+      test("clear map", () => {
+        expect(map.length()).toBe(12);
+        map.clear();
+        expect(map.length()).toBe(0);
+      });
+    });
   });
 });
