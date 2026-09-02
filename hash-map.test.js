@@ -79,4 +79,24 @@ describe("Positive cases", () => {
       });
     });
   });
+
+  describe("keys(), values(), entries()", () => {
+    test("get all keys", () => {
+      expect(map.keys().sort()).toEqual;
+      [
+        "elephant",
+        "carrot",
+        "frog",
+        "banana",
+        "apple",
+        "grape",
+        "hat",
+        "dog",
+        "lion",
+        "ice cream",
+        "jacket",
+        "kite",
+      ].sort();
+    });
+  });
 });

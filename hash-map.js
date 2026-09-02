@@ -95,6 +95,14 @@ class HashMap {
     this._capacity = CAPACITY;
     this._buckets.length = 0; //empty array contents
   }
+
+  keys() {
+    const keys = this._buckets.reduce((acc, item) => {
+      return acc.concat(...item.getKeys());
+    }, []);
+
+    return keys;
+  }
 }
 
 export { HashMap };
