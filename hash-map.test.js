@@ -20,63 +20,53 @@ describe("Positive cases", () => {
     map.set("lion", "golden");
   });
 
-  describe("set() scenarios", () => {
-    test("update node", () => {
+  describe("Add/Update scenarios", () => {
+    test("update existing node", () => {
       expect(map.get("dog")).toBe("brown");
       expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
       map.set("dog", "cane corso");
       expect(map.get("dog")).toBe("cane corso");
       expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
     });
 
     test("add node", () => {
       expect(map.get("moon")).toBeNull();
       expect(map.has("moon")).toBe(false);
+      expect(map.length()).toBe(12);
       map.set("moon", "silver");
       expect(map.get("moon")).toBe("silver");
       expect(map.has("moon")).toBe(true);
+      expect(map.length()).toBe(13);
     });
   });
 
-  describe("remove() scenarios", () => {
+  describe("Remove scenarios", () => {
     test("Remove node", () => {
       expect(map.get("jacket")).toBe("blue");
       expect(map.has("jacket")).toBe(true);
+      expect(map.length()).toBe(12);
       expect(map.remove("jacket")).toBe(true);
       expect(map.get("jacket")).toBeNull();
       expect(map.has("jacket")).toBe(false);
-    });
-
-    test("Remove non-existant node returns false", () => {
-      expect(map.get("purple")).toBeNull();
-      expect(map.has("purple")).toBe(false);
-      expect(map.remove("purple")).toBe(false);
-    });
-  });
-
-  describe("length() scenarios", () => {
-    test("Get total number of nodes", () => {
-      expect(map.length()).toBe(12);
-    });
-
-    test("Add node increases length", () => {
-      expect(map.length()).toBe(12);
-      map.set("flamingo", "pink");
-      expect(map.length()).toBe(13);
-    });
-
-    test("Remove node decreases length", () => {
-      expect(map.length()).toBe(12);
-      map.remove("apple", "red");
       expect(map.length()).toBe(11);
     });
 
-    describe("clear() scenarios", () => {
-      test("clear map", () => {
-        expect(map.length()).toBe(12);
-        map.clear();
-        expect(map.length()).toBe(0);
-      });
+    test("Remove non-existant node returns false", () => {
+      expect(map.get("moon")).toBeNull();
+      expect(map.has("moon")).toBe(false);
+      expect(map.remove("moon")).toBe(false);
+    });
+
+    test("clear", () => {
+      expect(map.get("dog")).toBe("brown");
+      expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
+      map.clear();
+      expect(map.get("dog")).toBeNull();
+      expect(map.has("dog")).toBe(false);
+      expect(map.length()).toBe(0);
     });
   });
 
