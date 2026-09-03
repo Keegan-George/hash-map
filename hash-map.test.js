@@ -21,20 +21,20 @@ describe("Positive cases", () => {
   });
 
   describe("set() scenarios", () => {
-    test("add node", () => {
-      expect(map.get("ebony")).toBeNull();
-      expect(map.has("ebony")).toBe(false);
-      map.set("ebony", "blade");
-      expect(map.get("ebony")).toBe("blade");
-      expect(map.has("ebony")).toBe(true);
-    });
-
     test("update node", () => {
       expect(map.get("dog")).toBe("brown");
       expect(map.has("dog")).toBe(true);
       map.set("dog", "cane corso");
       expect(map.get("dog")).toBe("cane corso");
       expect(map.has("dog")).toBe(true);
+    });
+
+    test("add node", () => {
+      expect(map.get("moon")).toBeNull();
+      expect(map.has("moon")).toBe(false);
+      map.set("moon", "silver");
+      expect(map.get("moon")).toBe("silver");
+      expect(map.has("moon")).toBe(true);
     });
   });
 
