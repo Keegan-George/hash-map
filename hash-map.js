@@ -137,4 +137,4 @@ class HashMap {
   }
 }
 
-export { HashMap };
+export { HashMap, CAPACITY };

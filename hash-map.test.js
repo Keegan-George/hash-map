@@ -1,4 +1,4 @@
-import { HashMap } from "./hash-map.js";
+import { HashMap, CAPACITY } from "./hash-map.js";
 import { test, expect, describe, beforeEach } from "@jest/globals";
 
 let map;
@@ -39,6 +39,18 @@ describe("Positive cases", () => {
       expect(map.get("moon")).toBe("silver");
       expect(map.has("moon")).toBe(true);
       expect(map.length()).toBe(13);
+    });
+
+    test("map size unchanged when nodes equal loadFactor * capacity", () => {
+      expect(map.capacity).toBe(CAPACITY);
+      map.set("carrot", "orange");
+      expect(map.capacity).toBe(CAPACITY);
+    });
+
+    test("Resize map when nodes exceeds loadFactor * capacity", () => {
+      expect(map.capacity).toBe(CAPACITY);
+      map.set("moon", "silver");
+      expect(map.capacity).toBe(CAPACITY * 2);
     });
   });
 
