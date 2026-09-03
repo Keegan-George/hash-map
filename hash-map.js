@@ -5,9 +5,9 @@ const CAPACITY = 16;
 
 class HashMap {
   constructor() {
-    this._loadFactor;
-    this._capacity;
-    this._buckets = [];
+    this.loadFactor;
+    this.capacity;
+    this.buckets = [];
     this.clear();
   }
 
@@ -16,7 +16,7 @@ class HashMap {
     const primeNumber = 31;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this._capacity;
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
     }
 
     return hashCode;
@@ -24,15 +24,15 @@ class HashMap {
 
   set(key, value) {
     const hashCode = this.#hash(key);
-    const index = hashCode % this._capacity;
+    const index = hashCode % this.capacity;
 
-    const bucket = this._buckets[index]; //linked list or null
+    const bucket = this.buckets[index]; //linked list or null
 
     //create new linked list if one doesn't exist
     if (!bucket) {
       const list = new LinkedList();
       list.append(key, value);
-      this._buckets[index] = list;
+      this.buckets[index] = list;
     } else {
       //othwerwise bucket exists so get node
       const node = bucket.getNodeByKey(key);
@@ -45,15 +45,15 @@ class HashMap {
     }
 
     //increase map size
-    if (this.length() > this._capacity * this._loadFactor) {
+    if (this.length() > this.capacity * this.loadFactor) {
       this.#resize(2);
     }
   }
 
   get(key) {
     const hashCode = this.#hash(key);
-    const index = hashCode % this._capacity;
-    const bucket = this._buckets[index]; //linked list or null
+    const index = hashCode % this.capacity;
+    const bucket = this.buckets[index]; //linked list or null
 
     const node = bucket?.getNodeByKey(key); //node or null
 
@@ -82,47 +82,47 @@ class HashMap {
     }
 
     const hashCode = this.#hash(key);
-    const index = hashCode % this._capacity;
-    const bucket = this._buckets[index]; //linked list or null
+    const index = hashCode % this.capacity;
+    const bucket = this.buckets[index]; //linked list or null
 
     bucket.removeNodeByKey(key);
     return true;
   }
 
   length() {
-    return this._buckets.reduce((acc, item) => {
+    return this.buckets.reduce((acc, item) => {
       acc += item.size;
       return acc;
     }, 0);
   }
 
   clear() {
-    this._loadFactor = LOAD_FACTOR;
-    this._capacity = CAPACITY;
-    this._buckets.length = 0; //empty array contents
+    this.loadFactor = LOAD_FACTOR;
+    this.capacity = CAPACITY;
+    this.buckets.length = 0; //empty array contents
   }
 
   keys() {
-    return this._buckets.reduce((acc, item) => {
+    return this.buckets.reduce((acc, item) => {
       return acc.concat(...item.getKeys());
     }, []);
   }
 
   values() {
-    return this._buckets.reduce((acc, item) => {
+    return this.buckets.reduce((acc, item) => {
       return acc.concat(...item.getValues());
     }, []);
   }
 
   entries() {
-    return this._buckets.reduce((acc, item) => {
+    return this.buckets.reduce((acc, item) => {
       return acc.concat(item.getEntries());
     }, []);
   }
 
   #resize(change) {
     const newMap = new HashMap();
-    newMap._capacity = this._capacity * change;
+    newMap.capacity = this.capacity * change;
 
     const entries = this.entries();
 
@@ -132,8 +132,8 @@ class HashMap {
       newMap.set(key, value);
     }
 
-    this._capacity = newMap._capacity;
-    this._buckets = newMap._buckets;
+    this.capacity = newMap.capacity;
+    this.buckets = newMap.buckets;
   }
 }
 
