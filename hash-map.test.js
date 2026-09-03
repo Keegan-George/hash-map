@@ -83,7 +83,7 @@ describe("Positive cases", () => {
   });
 
   describe("keys(), values(), entries()", () => {
-    test("get all keys", () => {
+    test("get keys, values, and entries", () => {
       expect(map.keys().sort()).toEqual(
         [
           "elephant",
@@ -100,9 +100,7 @@ describe("Positive cases", () => {
           "kite",
         ].sort(),
       );
-    });
 
-    test("get all values", () => {
       expect(map.values().sort()).toEqual(
         [
           "gray",
@@ -119,9 +117,7 @@ describe("Positive cases", () => {
           "pink",
         ].sort(),
       );
-    });
 
-    test("get all key:value pairs", () => {
       expect(map.entries().sort()).toEqual(
         [
           ["elephant", "gray"],
@@ -141,7 +137,7 @@ describe("Positive cases", () => {
     });
 
     test("Add node updates keys, values, and entries", () => {
-      map.set("zebra", "striped");
+      map.set("moon", "silver");
 
       expect(map.keys().sort()).toEqual(
         [
@@ -157,7 +153,7 @@ describe("Positive cases", () => {
           "ice cream",
           "jacket",
           "kite",
-          "zebra",
+          "moon",
         ].sort(),
       );
 
@@ -175,7 +171,7 @@ describe("Positive cases", () => {
           "white",
           "blue",
           "pink",
-          "striped",
+          "silver",
         ].sort(),
       );
 
@@ -193,7 +189,7 @@ describe("Positive cases", () => {
           ["ice cream", "white"],
           ["jacket", "blue"],
           ["kite", "pink"],
-          ["zebra", "striped"],
+          ["moon", "silver"],
         ].sort(),
       );
     });
