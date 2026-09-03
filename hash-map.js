@@ -28,19 +28,25 @@ class HashMap {
 
     const bucket = this._buckets[index]; //linked list or null
 
+    //create new linked list if one doesn't exist
     if (!bucket) {
       const list = new LinkedList();
       list.append(key, value);
       this._buckets[index] = list;
-      return;
+    } else {
+      //othwerwise bucket exists so get node
+      const node = bucket.getNodeByKey(key);
+
+      if (!node) {
+        bucket.append(key, value);
+      } else {
+        node.value = value;
+      }
     }
 
-    const node = bucket.getNodeByKey(key);
-
-    if (!node) {
-      bucket.append(key, value);
-    } else {
-      node.value = value;
+    //increase map size
+    if (this.length() > this._capacity * this._loadFactor) {
+      this.#resize(2);
     }
   }
 
@@ -112,6 +118,22 @@ class HashMap {
     return this._buckets.reduce((acc, item) => {
       return acc.concat(item.getEntries());
     }, []);
+  }
+
+  #resize(change) {
+    const newMap = new HashMap();
+    newMap._capacity = this._capacity * change;
+
+    const entries = this.entries();
+
+    for (const node of entries) {
+      let key, value;
+      [key, value] = node;
+      newMap.set(key, value);
+    }
+
+    this._capacity = newMap._capacity;
+    this._buckets = newMap._buckets;
   }
 }
 
