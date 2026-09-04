@@ -86,6 +86,10 @@ class HashMap {
     const bucket = this.buckets[index]; //linked list or null
 
     bucket.removeNodeByKey(key);
+
+    if (this.length() === CAPACITY * this.loadFactor) {
+      this.#resize(0.5);
+    }
     return true;
   }
 
