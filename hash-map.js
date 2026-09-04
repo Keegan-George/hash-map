@@ -141,8 +141,4 @@ class HashMap {
   }
 }
 
-const map = new HashMap();
-map.set("empty", "");
-const result = map.remove("empty");
-
 export { HashMap, CAPACITY };

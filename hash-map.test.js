@@ -158,6 +158,10 @@ describe("Positive cases", () => {
       expect(new Set(map.keys()).size).toBe(map.keys().length);
     });
 
+    test("length() equals keys().length", () => {
+      expect(map.length()).toEqual(map.keys().length);
+    });
+
     test("Add node updates keys, values, and entries", () => {
       map.set("moon", "silver");
 
