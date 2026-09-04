@@ -70,6 +70,16 @@ describe("Positive cases", () => {
       map.set("moon", "silver");
       expect(map.capacity).toBe(CAPACITY * 2);
     });
+
+    test("Resize preserves all entries", () => {
+      map.set("moon", "silver");
+
+      Object.entries(NODE_DATA).forEach(([k, v]) => {
+        expect(map.get(k)).toBe(v);
+      });
+
+      expect(map.get("moon")).toBe("silver");
+    });
   });
 
   describe("Remove scenarios", () => {
@@ -118,6 +128,22 @@ describe("Positive cases", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.remove("dog");
       expect(map.capacity).toBe(CAPACITY);
+    });
+
+    test("Return to default size preserves all entries", () => {
+      map.set("moon", "silver");
+
+      Object.entries(NODE_DATA).forEach(([k, v]) => {
+        expect(map.get(k)).toBe(v);
+      });
+
+      map.remove("moon");
+
+      Object.entries(NODE_DATA).forEach(([k, v]) => {
+        expect(map.get(k)).toBe(v);
+      });
+
+      expect(map.get("moon")).toBeNull();
     });
   });
 
