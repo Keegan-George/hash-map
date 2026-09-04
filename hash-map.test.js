@@ -106,56 +106,9 @@ describe("Positive cases", () => {
 
   describe("keys(), values(), entries()", () => {
     test("get keys, values, and entries", () => {
-      expect(map.keys().sort()).toEqual(
-        [
-          "elephant",
-          "carrot",
-          "frog",
-          "banana",
-          "apple",
-          "grape",
-          "hat",
-          "dog",
-          "lion",
-          "ice cream",
-          "jacket",
-          "kite",
-        ].sort(),
-      );
-
-      expect(map.values().sort()).toEqual(
-        [
-          "gray",
-          "orange",
-          "green",
-          "yellow",
-          "red",
-          "purple",
-          "black",
-          "brown",
-          "golden",
-          "white",
-          "blue",
-          "pink",
-        ].sort(),
-      );
-
-      expect(map.entries().sort()).toEqual(
-        [
-          ["elephant", "gray"],
-          ["carrot", "orange"],
-          ["frog", "green"],
-          ["banana", "yellow"],
-          ["apple", "red"],
-          ["grape", "purple"],
-          ["hat", "black"],
-          ["dog", "brown"],
-          ["lion", "golden"],
-          ["ice cream", "white"],
-          ["jacket", "blue"],
-          ["kite", "pink"],
-        ].sort(),
-      );
+      expect(map.keys().sort()).toEqual(Object.keys(NODE_DATA).sort());
+      expect(map.values().sort()).toEqual(Object.values(NODE_DATA).sort());
+      expect(map.entries().sort()).toEqual(Object.entries(NODE_DATA).sort());
     });
 
     test("Add node updates keys, values, and entries", () => {
