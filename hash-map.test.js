@@ -154,6 +154,10 @@ describe("Positive cases", () => {
       expect(map.entries().sort()).toEqual(Object.entries(NODE_DATA).sort());
     });
 
+    test("keys are unique", () => {
+      expect(new Set(map.keys()).size).toBe(map.keys().length);
+    });
+
     test("Add node updates keys, values, and entries", () => {
       map.set("moon", "silver");
 
