@@ -267,3 +267,43 @@ describe("Positive cases", () => {
     });
   });
 });
+
+describe("Empty map cases", () => {
+  beforeEach(() => {
+    map = new HashMap();
+  });
+
+  test("get() on empty map returns null", () => {
+    expect(map.get("frog")).toBeNull();
+  });
+
+  test("has() on empty map returns false", () => {
+    expect(map.has("frog")).toBe(false);
+  });
+
+  test("remove() on empty map returns false", () => {
+    expect(map.remove("frog")).toBe(false);
+  });
+
+  test("length() on empty map returns 0", () => {
+    expect(map.length()).toBe(0);
+  });
+
+  test("clear() empty map", () => {
+    map.clear();
+    expect(map.length()).toBe(0);
+  });
+
+  test("keys() on empty map returns empty array", () => {
+    expect(map.keys().length).toBe(0);
+  });
+
+  test("values() on empty map returns empty array", () => {
+    expect(map.values().length).toBe(0);
+  });
+
+  test("entries() on empty map returns empty array", () => {
+    map.clear();
+    expect(map.entries().length).toBe(0);
+  });
+});
