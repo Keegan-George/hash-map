@@ -291,26 +291,55 @@ describe("Edgecase strings", () => {
     map = new HashMap();
     Object.entries(NODE_DATA).forEach(([k, v]) => map.set(k, v));
   });
+  describe("Edgecase string keys", () => {
+    test("Empty string key", () => {
+      map.set("", "empty");
+      expect(map.get("")).toBe("empty");
+      expect(map.remove("")).toBe(true);
+      expect(map.get("")).toBeNull();
+    });
 
-  test("Empty string key", () => {
-    map.set("", "empty");
-    expect(map.get("")).toBe("empty");
-    expect(map.remove("")).toBe(true);
-    expect(map.get("")).toBeNull();
+    test("Special characters key", () => {
+      const chars = "!@#$%^&*()";
+
+      map.set(chars, "special");
+      expect(map.get(chars)).toBe("special");
+      expect(map.remove(chars)).toBe(true);
+      expect(map.get("")).toBeNull();
+    });
+
+    test("Long character key", () => {
+      const longKey = "x".repeat(5000);
+      map.set(longKey, "long");
+      expect(map.get(longKey)).toBe("long");
+      expect(map.remove(longKey)).toBe(true);
+      expect(map.get(longKey)).toBeNull();
+    });
   });
 
-  test("Special characters key", () => {
-    const chars = "!@#$%^&*()";
+  describe("Edgecase string values", () => {
+    test("Empty string value", () => {
+      map.set("empty", "");
+      expect(map.get("empty")).toBe("");
+      expect(map.remove("empty")).toBe(true);
+      expect(map.get("empty")).toBeNull();
+    });
 
-    map.set(chars, "special");
-    expect(map.get(chars)).toBe("special");
-    expect(map.remove(chars)).toBe(true);
-    expect(map.get("")).toBeNull();
-  });
+    test("Special characters value", () => {
+      const chars = "!@#$%^&*()";
 
-  test("Long character key", () => {
-    const longKey = "x".repeat(5000);
-    map.set(longKey, "long");
-    expect(map.get(longKey)).toBe("long");
+      map.set("special", chars);
+      expect(map.get("special")).toBe(chars);
+      expect(map.remove("special")).toBe(true);
+      expect(map.get("special")).toBeNull();
+    });
+
+    test("Long character value", () => {
+      const longValue = "x".repeat(5000);
+      map.set("long", longValue);
+      expect(map.get("long")).toBe(longValue);
+      expect(map.remove("long")).toBe(true);
+      expect(map.get("long")).toBeNull();
+    });
   });
 });
