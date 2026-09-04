@@ -383,3 +383,38 @@ describe("Edgecase strings", () => {
     });
   });
 });
+
+describe("Collision tests", () => {
+  beforeEach(() => {
+    map = new HashMap();
+    map.set("grape", "purple");
+    map.set("hat", "black");
+  });
+
+  test("multiple nodes in same bucket are retrievable", () => {
+    expect(map.get("grape")).toBe("purple");
+    expect(map.get("hat")).toBe("black");
+  });
+
+  test("remove node in collision bucket preserves other node", () => {
+    expect(map.remove("grape")).toBe(true);
+    expect(map.get("grape")).toBeNull();
+    expect(map.get("hat")).toBe("black");
+  });
+
+  test("overwrite node in collision bucket works correctly", () => {
+    map.set("hat", "cowboy");
+    expect(map.get("hat")).toBe("cowboy");
+    expect(map.get("grape")).toBe("purple");
+  });
+
+  test("resize preserves collision bucket", () => {
+    // trigger resize
+    for (let i = 0; i < 20; i++) {
+      map.set(`extra${i}`, `${i}`);
+    }
+
+    expect(map.get("grape")).toBe("purple");
+    expect(map.get("hat")).toBe("black");
+  });
+});
