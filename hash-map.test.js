@@ -59,13 +59,13 @@ describe("Positive cases", () => {
       expect(map.length()).toBe(13);
     });
 
-    test("HashMap size unchanged when node count equals limit", () => {
+    test("HashMap size unchanged when node count reaches threshold", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.set("carrot", "orange");
       expect(map.capacity).toBe(CAPACITY);
     });
 
-    test("Resize HashMap when node count exceeds limit", () => {
+    test("Resize HashMap when node count exceeds threshold", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.set("moon", "silver");
       expect(map.capacity).toBe(CAPACITY * 2);
@@ -114,7 +114,7 @@ describe("Positive cases", () => {
       expect(map.entries()).toEqual([]);
     });
 
-    test("HashMap size unchanged when node count below limit", () => {
+    test("HashMap size unchanged when node count below threshold", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.remove("dog");
       expect(map.capacity).toBe(CAPACITY);
