@@ -285,6 +285,12 @@ describe("Empty map cases", () => {
     expect(map.remove("frog")).toBe(false);
   });
 
+  test("multiple remove() calls all return false", () => {
+    expect(map.remove("frog")).toBe(false);
+    expect(map.remove("banana")).toBe(false);
+    expect(map.remove("ice cream")).toBe(false);
+  });
+
   test("length() on empty map returns 0", () => {
     expect(map.length()).toBe(0);
   });
