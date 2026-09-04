@@ -285,3 +285,32 @@ describe("Empty map cases", () => {
     expect(map.entries()).toEqual([]);
   });
 });
+
+describe("Edgecase strings", () => {
+  beforeEach(() => {
+    map = new HashMap();
+    Object.entries(NODE_DATA).forEach(([k, v]) => map.set(k, v));
+  });
+
+  test("Empty string key", () => {
+    map.set("", "empty");
+    expect(map.get("")).toBe("empty");
+    expect(map.remove("")).toBe(true);
+    expect(map.get("")).toBeNull();
+  });
+
+  test("Special characters key", () => {
+    const chars = "!@#$%^&*()";
+
+    map.set(chars, "special");
+    expect(map.get(chars)).toBe("special");
+    expect(map.remove(chars)).toBe(true);
+    expect(map.get("")).toBeNull();
+  });
+
+  test("Long character key", () => {
+    const longKey = "x".repeat(5000);
+    map.set(longKey, "long");
+    expect(map.get(longKey)).toBe("long");
+  });
+});
