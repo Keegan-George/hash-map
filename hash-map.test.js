@@ -321,8 +321,10 @@ describe("Edgecase strings", () => {
     test("Empty string key", () => {
       map.set("", "empty");
       expect(map.get("")).toBe("empty");
+      expect(map.has("")).toBe(true);
       expect(map.remove("")).toBe(true);
       expect(map.get("")).toBeNull();
+      expect(map.has("")).toBe(false);
     });
 
     test("Special characters key", () => {
@@ -330,16 +332,20 @@ describe("Edgecase strings", () => {
 
       map.set(chars, "special");
       expect(map.get(chars)).toBe("special");
+      expect(map.has(chars)).toBe(true);
       expect(map.remove(chars)).toBe(true);
       expect(map.get("")).toBeNull();
+      expect(map.has(chars)).toBe(false);
     });
 
     test("Long character key", () => {
       const longKey = "x".repeat(5000);
       map.set(longKey, "long");
       expect(map.get(longKey)).toBe("long");
+      expect(map.has(longKey)).toBe(true);
       expect(map.remove(longKey)).toBe(true);
       expect(map.get(longKey)).toBeNull();
+      expect(map.has(longKey)).toBe(false);
     });
   });
 
