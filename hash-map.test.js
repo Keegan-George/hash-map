@@ -25,12 +25,26 @@ describe("Positive cases", () => {
   });
 
   describe("Add/Update scenarios", () => {
-    test("update existing node", () => {
+    test("update node", () => {
       expect(map.get("dog")).toBe("brown");
       expect(map.has("dog")).toBe(true);
       expect(map.length()).toBe(12);
       map.set("dog", "cane corso");
       expect(map.get("dog")).toBe("cane corso");
+      expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
+    });
+
+    test("repeated node updates", () => {
+      expect(map.get("dog")).toBe("brown");
+      expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
+      map.set("dog", "cane corso");
+      expect(map.get("dog")).toBe("cane corso");
+      expect(map.has("dog")).toBe(true);
+      expect(map.length()).toBe(12);
+      map.set("dog", "pit bull");
+      expect(map.get("dog")).toBe("pit bull");
       expect(map.has("dog")).toBe(true);
       expect(map.length()).toBe(12);
     });
