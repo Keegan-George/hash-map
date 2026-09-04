@@ -79,10 +79,12 @@ describe("Positive cases", () => {
       expect(map.get("dog")).toBe("brown");
       expect(map.has("dog")).toBe(true);
       expect(map.length()).toBe(12);
+      expect(map.capacity).toBe(CAPACITY);
       map.clear();
       expect(map.get("dog")).toBeNull();
       expect(map.has("dog")).toBe(false);
       expect(map.length()).toBe(0);
+      expect(map.capacity).toBe(CAPACITY);
     });
 
     test("HashMap size unchanged when node count below limit", () => {
