@@ -99,6 +99,9 @@ describe("Positive cases", () => {
       expect(map.has("dog")).toBe(false);
       expect(map.length()).toBe(0);
       expect(map.capacity).toBe(CAPACITY);
+      expect(map.keys()).toEqual([]);
+      expect(map.values()).toEqual([]);
+      expect(map.entries()).toEqual([]);
     });
 
     test("HashMap size unchanged when node count below limit", () => {
@@ -270,15 +273,15 @@ describe("Empty map cases", () => {
   });
 
   test("keys() on empty map returns empty array", () => {
-    expect(map.keys().length).toBe(0);
+    expect(map.keys()).toEqual([]);
   });
 
   test("values() on empty map returns empty array", () => {
-    expect(map.values().length).toBe(0);
+    expect(map.values()).toEqual([]);
   });
 
   test("entries() on empty map returns empty array", () => {
     map.clear();
-    expect(map.entries().length).toBe(0);
+    expect(map.entries()).toEqual([]);
   });
 });
