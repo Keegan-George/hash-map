@@ -67,7 +67,7 @@ class HashMap {
   has(key) {
     const node = this.get(key);
 
-    if (node) {
+    if (node || node === "") {
       return true;
     }
 
@@ -140,5 +140,9 @@ class HashMap {
     this.buckets = newMap.buckets;
   }
 }
+
+const map = new HashMap();
+map.set("empty", "");
+const result = map.remove("empty");
 
 export { HashMap, CAPACITY };
