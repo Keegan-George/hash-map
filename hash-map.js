@@ -69,13 +69,7 @@ class HashMap {
   }
 
   has(key) {
-    const node = this.get(key);
-
-    if (node || node === "") {
-      return true;
-    }
-
-    return false;
+    return this.get(key) !== null;
   }
 
   remove(key) {
