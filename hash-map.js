@@ -2,6 +2,7 @@ import { LinkedList } from "./linked-list.js";
 
 const LOAD_FACTOR = 0.75;
 const CAPACITY = 16;
+const SHRINK_FACTOR = 0.5;
 
 class HashMap {
   constructor() {
@@ -33,7 +34,7 @@ class HashMap {
       list.append(key, value);
       this.buckets[hashCode] = list;
     } else {
-      //othwerwise bucket exists so get node
+      //othwerwise bucket exists so retrieve node
       const node = bucket.getNodeByKey(key);
 
       if (!node) {
@@ -78,7 +79,8 @@ class HashMap {
 
     bucket.removeNodeByKey(key);
 
-    if (this.length() === CAPACITY * this.loadFactor) {
+    //decrease hashmap size
+    if (this.length() < this.capacity * this.loadFactor * SHRINK_FACTOR) {
       this.#resize(0.5);
     }
     return true;
