@@ -102,7 +102,8 @@ class HashMap {
         return acc;
       }
 
-      return acc.concat(...bucket.getKeys());
+      acc.push(...bucket.getKeys());
+      return acc;
     }, []);
   }
 
@@ -112,7 +113,8 @@ class HashMap {
         return acc;
       }
 
-      return acc.concat(...bucket.getValues());
+      acc.push(...bucket.getValues());
+      return acc;
     }, []);
   }
 
@@ -122,7 +124,8 @@ class HashMap {
         return acc;
       }
 
-      return acc.concat(bucket.getEntries());
+      acc.push(...bucket.getEntries());
+      return acc;
     }, []);
   }
 
