@@ -100,20 +100,20 @@ class HashMap {
   }
 
   keys() {
-    return this.buckets.reduce((acc, item) => {
-      return acc.concat(...item.getKeys());
+    return this.buckets.reduce((acc, bucket) => {
+      return acc.concat(...bucket.getKeys());
     }, []);
   }
 
   values() {
-    return this.buckets.reduce((acc, item) => {
-      return acc.concat(...item.getValues());
+    return this.buckets.reduce((acc, bucket) => {
+      return acc.concat(...bucket.getValues());
     }, []);
   }
 
   entries() {
-    return this.buckets.reduce((acc, item) => {
-      return acc.concat(item.getEntries());
+    return this.buckets.reduce((acc, bucket) => {
+      return acc.concat(bucket.getEntries());
     }, []);
   }
 
