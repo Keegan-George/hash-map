@@ -114,6 +114,15 @@ describe("Positive cases", () => {
       expect(map.entries()).toEqual([]);
     });
 
+    test("Can add node after clearing", () => {
+      expect(map.length()).toBe(12);
+      map.clear();
+      expect(map.set("moon", "silver"));
+      expect(map.get("moon")).toBe("silver");
+      expect(map.has("moon")).toBe(true);
+      expect(map.length()).toBe(1);
+    });
+
     test("HashMap size unchanged when node count below threshold", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.remove("dog");
