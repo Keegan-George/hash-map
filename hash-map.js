@@ -133,7 +133,7 @@ class HashMap {
 
   #resize(change) {
     const oldEntries = this.entries();
-    this.capacity = this.capacity * change;
+    this.capacity = Math.max(CAPACITY, this.capacity * change);
     this.buckets = new Array(this.capacity).fill(null);
 
     for (const [key, value] of oldEntries) {

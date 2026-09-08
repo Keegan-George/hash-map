@@ -147,6 +147,25 @@ describe("Positive cases", () => {
       expect(map.capacity).toBe(CAPACITY);
     });
 
+    test("HashMap never falls below minimum capacity", () => {
+      expect(map.capacity).toBe(CAPACITY);
+      map.set("moon", "silver");
+      expect(map.capacity).toBe(CAPACITY * 2);
+      map.remove("moon");
+      expect(map.capacity).toBe(CAPACITY * 2);
+      map.remove("dog");
+      map.remove("apple");
+      map.remove("banana");
+      map.remove("carrot");
+      map.remove("elephant");
+      map.remove("frog");
+      expect(map.length()).toBe(6);
+      expect(map.capacity).toBe(CAPACITY);
+      map.remove("grape");
+      expect(map.length()).toBe(5);
+      expect(map.capacity).toBe(CAPACITY);
+    });
+
     test("Return to default size preserves all entries", () => {
       map.set("moon", "silver");
 
