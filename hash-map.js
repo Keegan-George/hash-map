@@ -119,19 +119,13 @@ class HashMap {
   }
 
   #resize(change) {
-    const newMap = new HashMap();
-    newMap.capacity = this.capacity * change;
+    const oldEntries = this.entries();
+    this.capacity = this.capacity * change;
+    this.buckets = [];
 
-    const entries = this.entries();
-
-    for (const node of entries) {
-      let key, value;
-      [key, value] = node;
-      newMap.set(key, value);
+    for (const [key, value] of oldEntries) {
+      this.set(key, value);
     }
-
-    this.capacity = newMap.capacity;
-    this.buckets = newMap.buckets;
   }
 }
 
