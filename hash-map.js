@@ -5,9 +5,6 @@ const CAPACITY = 16;
 
 class HashMap {
   constructor() {
-    this.loadFactor;
-    this.capacity;
-    this.buckets;
     this.clear();
   }
 
