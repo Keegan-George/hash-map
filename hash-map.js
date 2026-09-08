@@ -7,7 +7,7 @@ class HashMap {
   constructor() {
     this.loadFactor;
     this.capacity;
-    this.buckets = [];
+    this.buckets;
     this.clear();
   }
 
@@ -96,23 +96,35 @@ class HashMap {
   clear() {
     this.loadFactor = LOAD_FACTOR;
     this.capacity = CAPACITY;
-    this.buckets.length = 0; //empty array contents
+    this.buckets = new Array(this.capacity).fill(null);
   }
 
   keys() {
     return this.buckets.reduce((acc, bucket) => {
+      if (!bucket) {
+        return acc;
+      }
+
       return acc.concat(...bucket.getKeys());
     }, []);
   }
 
   values() {
     return this.buckets.reduce((acc, bucket) => {
+      if (!bucket) {
+        return acc;
+      }
+
       return acc.concat(...bucket.getValues());
     }, []);
   }
 
   entries() {
     return this.buckets.reduce((acc, bucket) => {
+      if (!bucket) {
+        return acc;
+      }
+
       return acc.concat(bucket.getEntries());
     }, []);
   }
