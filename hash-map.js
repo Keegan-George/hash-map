@@ -28,15 +28,13 @@ class HashMap {
 
   set(key, value) {
     const hashCode = this.#hash(key);
-    const index = hashCode % this.capacity;
-
-    const bucket = this.buckets[index]; //linked list or null
+    const bucket = this.buckets[hashCode]; //linked list or null
 
     //create new linked list if one doesn't exist
     if (!bucket) {
       const list = new LinkedList();
       list.append(key, value);
-      this.buckets[index] = list;
+      this.buckets[hashCode] = list;
     } else {
       //othwerwise bucket exists so get node
       const node = bucket.getNodeByKey(key);
@@ -56,8 +54,7 @@ class HashMap {
 
   get(key) {
     const hashCode = this.#hash(key);
-    const index = hashCode % this.capacity;
-    const bucket = this.buckets[index]; //linked list or null
+    const bucket = this.buckets[hashCode]; //linked list or null
 
     const node = bucket?.getNodeByKey(key); //node or null
 
@@ -80,8 +77,7 @@ class HashMap {
     }
 
     const hashCode = this.#hash(key);
-    const index = hashCode % this.capacity;
-    const bucket = this.buckets[index]; //linked list or null
+    const bucket = this.buckets[hashCode]; //linked list or null
 
     bucket.removeNodeByKey(key);
 
