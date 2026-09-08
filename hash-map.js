@@ -12,6 +12,10 @@ class HashMap {
   }
 
   #hash(key) {
+    if (typeof key !== "string") {
+      throw new TypeError("Hashmap only supports string keys.");
+    }
+
     let hashCode = 0;
     const primeNumber = 31;
 
