@@ -129,12 +129,20 @@ describe("Positive cases", () => {
       expect(map.capacity).toBe(CAPACITY);
     });
 
-    test("HashMap can return to default size after expanding", () => {
+    test("HashMap size does not oscillate after expanding", () => {
       expect(map.capacity).toBe(CAPACITY);
       map.set("moon", "silver");
       expect(map.capacity).toBe(CAPACITY * 2);
       map.remove("moon");
+      expect(map.capacity).toBe(CAPACITY * 2);
+    });
+
+    test("HashMap can shrink after resizing when length drops below threshold", () => {
       expect(map.capacity).toBe(CAPACITY);
+      map.set("moon", "silver");
+      expect(map.capacity).toBe(CAPACITY * 2);
+      map.remove("moon");
+      expect(map.capacity).toBe(CAPACITY * 2);
       map.remove("dog");
       expect(map.capacity).toBe(CAPACITY);
     });
