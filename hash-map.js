@@ -88,9 +88,8 @@ class HashMap {
   }
 
   length() {
-    return this.buckets.reduce((acc, item) => {
-      acc += item.size;
-      return acc;
+    return this.buckets.reduce((acc, bucket) => {
+      return acc + (bucket ? bucket.size : 0);
     }, 0);
   }
 
