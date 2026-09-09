@@ -1,6 +1,11 @@
 /**
- * A singly linked list implementation for use in a hash map.
- * Supports insertion, removal, and search operations of key:value pairs.
+ * A singly linked list used internally by the HashMap for collision handling.
+ *
+ * - Stores key–value pairs in Node objects.
+ * - Supports append, prepend, removal, and retrieval operations.
+ *
+ * Behavior:
+ * - Maintains references to head, tail, and size for efficient operations.
  */
 class LinkedList {
   constructor() {
@@ -50,7 +55,7 @@ class LinkedList {
   }
 
   /**
-   * The number of nodes in the list.
+   * Returns the number of nodes in the list.
    * @type {number}
    * @readonly
    */
@@ -59,7 +64,7 @@ class LinkedList {
   }
 
   /**
-   * The key stored in the head node.
+   * Returns the head node in the list.
    * @type {*|undefined}
    * @readonly
    */
@@ -68,7 +73,7 @@ class LinkedList {
   }
 
   /**
-   * The key stored in the tail node.
+   * Returns the tail node in the list.
    * @type {*|undefined}
    * @readonly
    */
@@ -87,7 +92,7 @@ class LinkedList {
   }
 
   /**
-   * Removes the first node in the list and returns its key and value
+   * Removes the first node in the list and returns it
    * @returns {*|undefined} The removed node, or undefined if the list is empty.
    */
   pop() {
@@ -125,7 +130,7 @@ class LinkedList {
   }
 
   /**
-   * Finds the index of a given key.
+   * Finds the index of a node with a given key.
    * @param {*} key - The key to search for.
    * @returns {number} The index, or -1 if not found.
    */
@@ -218,6 +223,12 @@ class LinkedList {
     return current;
   }
 
+  /**
+   * Retrieves a node by its key.
+   *
+   * @param {*} key - The key to search for.
+   * @returns {Node|undefined} The matching node, or undefined if not found.
+   */
   getNodeByKey(key) {
     let current = this.head;
     while (current) {
@@ -229,6 +240,12 @@ class LinkedList {
     return;
   }
 
+  /**
+   * Removes the first node whose key matches the provided key.
+   *
+   * @param {*} key - The key of the node to remove.
+   * @returns {void}
+   */
   removeNodeByKey(key) {
     let current = this.head;
 
@@ -254,6 +271,11 @@ class LinkedList {
     }
   }
 
+  /**
+   * Returns an array of all keys stored in the list.
+   *
+   * @returns {*[]} A list of keys.
+   */
   getKeys() {
     const keys = [];
     let current = this.head;
@@ -266,6 +288,11 @@ class LinkedList {
     return keys;
   }
 
+  /**
+   * Returns an array of all values stored in the list.
+   *
+   * @returns {*[]} A list of values.
+   */
   getValues() {
     const values = [];
     let current = this.head;
@@ -278,6 +305,11 @@ class LinkedList {
     return values;
   }
 
+  /**
+   * Returns an array of `[key, value]` pairs stored in the list.
+   *
+   * @returns {Array<[*, *]>} A list of entries.
+   */
   getEntries() {
     const entries = [];
     let current = this.head;
